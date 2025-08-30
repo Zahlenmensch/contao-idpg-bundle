@@ -42,8 +42,7 @@ class ModuleSplitNavigation extends ModuleNavigation
 
     /**
      * Returns the root page ID for the current page context.
-     * This method is required when the module is used inside a module group,
-     * as Contao expects it to determine the navigation root.
+     * This method is used to determine the starting point of the navigation tree.
      *
      * @return int
      */
@@ -54,13 +53,10 @@ class ModuleSplitNavigation extends ModuleNavigation
     }
 
     /**
-     * Returns the navigation items.
-     * This method is required when the module is used inside a module group.
-     * Contao expects this method to exist and return an array of navigation items.
-     *
-     * @return array
+     * Prepares the module output and passes data to the template.
+     * This method is automatically called by Contao when rendering the module.
      */
-    public function getNavigation(): array
+    protected function compile(): void
     {
         // Retrieve navigation settings from the backend module configuration.
         $startLevel    = $this->levelOffset   ?? 0;     // Starting level of the navigation tree
@@ -81,20 +77,10 @@ class ModuleSplitNavigation extends ModuleNavigation
             });
         }
 
-        // Return the final navigation array to be used in templates or module groups.
-        return $items;
-    }
+        // Pass the final navigation items to the template.
+        $this->Template->items = $items;
 
-    /**
-     * Prepares the module output and passes data to the template.
-     * This method is automatically called by Contao.
-     */
-    protected function compile(): void
-    {
-        // Pass the navigation items to the template.
-        $this->Template->items = $this->getNavigation();
-
-        // Pass the article alias to the template (if defined in DCA)
+        // Pass the article alias to the template (if defined in DCA).
         $this->Template->headerArticleAlias = $this->headerArticleAlias ?? '';
 
         // Example usage of translator (optional):
