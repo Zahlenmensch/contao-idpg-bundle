@@ -1,0 +1,24 @@
+{
+  "name": "zahlenmensch/contao-idpg-bundle",
+  "type": "contao-bundle",
+  "description": "Contao Bundle für id-pferdegesundheit.de",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Zahlenmensch",
+      "homepage": "https://github.com/zahlenmensch"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "contao/core-bundle": "5.*"
+  },
+  "extra": {
+    "contao-manager-plugin": "Zahlenmensch\\ContaoIdpgBundle\\ContaoManager\\Plugin"
+  },
+  "autoload": {
+    "psr-4": {
+        "Zahlenmensch\\ContaoIdpgBundle\\": "src/"
+    }
+  }
+}

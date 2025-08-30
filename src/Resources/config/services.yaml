@@ -1,0 +1,10 @@
+services:
+  # Default settings for all services in this file
+  _defaults:
+    autowire: true       # Automatically inject dependencies
+    autoconfigure: true  # Automatically tag services (e.g. for Twig, events)
+    public: false        # Services are private by default
+
+  # Automatically register all classes in your bundle as services
+  Zahlenmensch\ContaoIdpgBundle\Module\:
+    resource: '../../Module'

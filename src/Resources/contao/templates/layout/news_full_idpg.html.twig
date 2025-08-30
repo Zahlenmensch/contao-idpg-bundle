@@ -1,0 +1,90 @@
+{#
+  Twig Template: Full News Article View (Accessible)
+  --------------------------------------------------
+  Renders a full news article with headline, subheadline, author info,
+  publication date, article body, and optional downloads.
+  Includes schema.org markup, accessibility enhancements, and modular blocks.
+#}
+
+<section class="layout_full block{{ class }}"
+         role="article"
+         aria-labelledby="entry-title"
+         aria-describedby="author-meta"
+         itemscope
+         itemtype="https://schema.org/Article">
+
+  {% block headline %}
+    <header>
+      <h1 id="entry-title" itemprop="headline">{{ newsHeadline }}</h1>
+
+      {% if hasSubHeadline %}
+        <h2 itemprop="alternativeHeadline">{{ subHeadline }}</h2>
+      {% endif %}
+    </header>
+  {% endblock %}
+
+  {% block meta %}
+    <section class="author-meta"
+             id="author-meta"
+             aria-label="{{ 'news.author_meta_label'|trans }}"
+             itemscope
+             itemtype="https://schema.org/Article">
+
+      <p class="author-info">
+        <span class="author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{{ authorName|default('Ines Diepenbruck') }}</span>
+        </span>
+
+        <span class="separator" aria-hidden="true"> | </span>
+
+        <span class="updated-label">{{ 'news.updated_label'|trans }}</span>
+        <time datetime="{{ datetime|date('Y-m-d') }}" itemprop="dateModified">
+          {{ date }}
+        </time>
+      </p>
+    </section>
+  {% endblock %}
+
+  {% block body %}
+    <div class="content-text" itemprop="articleBody">
+      {% if hasText %}
+        {{ text|raw }}
+      {% else %}
+        <div class="ce_text block">
+          {% if not addBefore %}
+            {{ teaser|csp_inline_styles|raw }}
+          {% endif %}
+
+          {% if addImage %}
+            {{ include('@Contao/image/image.html.twig', { image: arrData }) }}
+          {% endif %}
+
+          {% if addBefore %}
+            {{ teaser|csp_inline_styles|raw }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endblock %}
+
+  {% block enclosure %}
+    {% if enclosure %}
+      <aside class="enclosure"
+             aria-label="{{ 'news.downloads_label'|trans }}">
+        <ul role="list">
+          {% for file in enclosure %}
+            <li class="download-element ext-{{ file.extension }}">
+              <a href="{{ file.href }}"
+                 title="{{ file.title }}"
+                 itemprop="associatedMedia">
+                {{ file.link }}
+                <span class="size">({{ file.filesize }})</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </aside>
+    {% endif %}
+  {% endblock %}
+
+</section>

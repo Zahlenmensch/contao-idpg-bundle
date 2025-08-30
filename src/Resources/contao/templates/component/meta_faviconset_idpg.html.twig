@@ -1,0 +1,29 @@
+{#
+  Twig Template: Modular Favicon Set
+  ----------------------------------
+  This template provides a complete set of favicon and platform icons
+  for modern browsers and devices. It uses Contao's TL_BASE variable
+  to generate correct paths to the theme assets.
+#}
+
+{# Standard favicon for legacy browsers #}
+<link rel="icon" href="{{ TL_BASE }}/files/theme/favicons/favicon.ico" type="image/x-icon">
+
+{# SVG favicon for modern browsers #}
+<link rel="icon" href="{{ TL_BASE }}/files/theme/favicons/favicon.svg" type="image/svg+xml">
+
+{# Apple touch icon for iOS devices #}
+<link rel="apple-touch-icon" sizes="180x180" href="{{ TL_BASE }}/files/theme/favicons/apple-touch-icon.png">
+
+{# Android Chrome icons #}
+<link rel="icon" type="image/png" sizes="192x192" href="{{ TL_BASE }}/files/theme/favicons/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="{{ TL_BASE }}/files/theme/favicons/android-chrome-512x512.png">
+
+{# Web manifest for progressive web apps #}
+<link rel="manifest" href="{{ TL_BASE }}/files/theme/favicons/site.webmanifest">
+
+{# Microsoft-specific configuration #}
+<meta name="msapplication-config" content="{{ TL_BASE }}/files/theme/favicons/browserconfig.xml">
+
+{# Theme color for browser UI #}
+<meta name="theme-color" content="#ffffff">

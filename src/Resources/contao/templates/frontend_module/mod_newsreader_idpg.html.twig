@@ -1,0 +1,46 @@
+{% extends "block_searchable" %}
+
+{% block content %}
+  <article itemscope
+           itemtype="https://schema.org/Article"
+           role="article"
+           aria-labelledby="news-headline">
+
+    {{ articles|raw }}
+
+  </article>
+
+  {% block back_navigation %}
+    {% if referer %}
+      <!-- indexer::stop -->
+      <section class="back-navigation" aria-label="{{ 'news.back_navigation_label'|trans }}">
+        <p class="back">
+          <a href="{{ referer }}"
+             aria-label="{{ 'news.back_link_aria'|trans }}">
+            {{ back|default('news.back_link'|trans) }}
+          </a>
+        </p>
+      </section>
+      <!-- indexer::continue -->
+    {% endif %}
+  {% endblock %}
+
+  {% block comments %}
+    {% if allowComments %}
+      <section class="ce_comments block"
+               role="region"
+               aria-labelledby="comments-heading">
+
+        <{{ hlc }} id="comments-heading">{{ hlcText }}</{{ hlc }}>
+
+        {{ comments|join('')|raw }}
+
+        {{ pagination|raw }}
+
+        <{{ hlc }}>{{ addComment }}</{{ hlc }}>
+
+        {{ include('mod_comment_form.html.twig', { data: arrData }) }}
+      </section>
+    {% endif %}
+  {% endblock %}
+{% endblock %}

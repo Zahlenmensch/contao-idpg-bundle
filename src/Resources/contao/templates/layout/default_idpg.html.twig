@@ -1,0 +1,19 @@
+{#
+  Custom Layout Template: default_idpg.html.twig
+  ----------------------------------------------
+  This template extends Contao's default layout and injects custom head content.
+  It includes favicon definitions and Matomo tracking for frontend users.
+  Other UI components (e.g. back-to-top button, mobile nav script) are added via layout modules.
+#}
+
+{% extends '@Contao/layout/default.html.twig' %}
+
+{% block head %}
+  {{ parent() }}
+
+  {# Include favicon definitions for all platforms #}
+  {{ 'meta_faviconset_idpg' | include }}
+
+  {# Include Matomo tracking script (cookieless, GDPR-compliant) #}
+  {{ 'track_matomo_idpg' | include }}
+{% endblock %}

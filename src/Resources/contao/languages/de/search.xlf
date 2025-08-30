@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="search">
+    <body>
+
+      <!-- Suchformular -->
+      <trans-unit id="search.form_label">
+        <source>Search form</source>
+        <target>Suchformular</target>
+      </trans-unit>
+
+      <trans-unit id="search.keyword_label">
+        <source>Search keywords</source>
+        <target>Suchbegriffe</target>
+      </trans-unit>
+
+      <trans-unit id="search.options_label">
+        <source>Search options</source>
+        <target>Suchoptionen</target>
+      </trans-unit>
+
+      <trans-unit id="search.match_all">
+        <source>Match all words</source>
+        <target>Alle Wörter müssen vorkommen</target>
+      </trans-unit>
+
+      <trans-unit id="search.match_any">
+        <source>Match any word</source>
+        <target>Mindestens ein Wort muss vorkommen</target>
+      </trans-unit>
+
+      <trans-unit id="search.submit">
+        <source>Search</source>
+        <target>Suchen</target>
+      </trans-unit>
+
+      <trans-unit id="search.submit_aria">
+        <source>Submit search query</source>
+        <target>Suchanfrage absenden</target>
+      </trans-unit>
+
+      <!-- Ergebnisliste -->
+      <trans-unit id="search.results_label">
+        <source>Search results</source>
+        <target>Suchergebnisse</target>
+      </trans-unit>
+
+      <trans-unit id="search.no_results">
+        <source>No results found.</source>
+        <target>Keine Ergebnisse gefunden.</target>
+      </trans-unit>
+
+      <!-- Treffer-Metadaten -->
+      <trans-unit id="search.category_label">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </trans-unit>
+
+      <trans-unit id="search.type_label">
+        <source>Type</source>
+        <target>Typ</target>
+      </trans-unit>
+
+      <!-- Optional für ARIA-Linkbeschriftung -->
+      <trans-unit id="search.result_link_label">
+        <source>Open result: %title%</source>
+        <target>Ergebnis öffnen: %title%</target>
+      </trans-unit>
+
+    </body>
+  </file>
+</xliff>

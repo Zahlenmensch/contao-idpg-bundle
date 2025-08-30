@@ -1,0 +1,71 @@
+{#
+  Twig Template: Split Navigation for Contao
+  ------------------------------------------
+  Renders the first two navigation items, inserts a logo/article,
+  and then renders the remaining items. Supports nested subitems,
+  accessibility (ARIA), and semantic SEO via Schema.org.
+#}
+
+<nav role="navigation"
+     aria-label="Main navigation"
+     itemscope
+     itemtype="https://schema.org/SiteNavigationElement">
+
+  {% if items is not empty %}
+
+    {# Primary navigation block (first two items) #}
+    <section class="nav-primary" aria-label="Primary navigation level">
+      <ul class="level_1" role="list">
+        {% for item in items[:2] %}
+          <li class="{{ item.class }}">
+            <a href="{{ item.href }}"
+               title="{{ item.title|default(item.link) }}"
+               aria-label="{{ item.title|default(item.link) }}"
+               {% if item.active %}aria-current="page"{% endif %}>
+              {{ item.link }}
+            </a>
+
+            {# Render subitems if available #}
+            {% if item.subitems is not empty %}
+              {{ item.subitems|raw }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    {# Optional logo or article insertion between navigation blocks #}
+    <section class="nav-logo" aria-label="Logo or custom content">
+      {% if headerArticleAlias is not empty %}
+        {{ ('{{insert_article::' ~ headerArticleAlias ~ '}}') | insert_tag }}
+      {% endif %}
+    </section>
+
+    {# Secondary navigation block (remaining items) #}
+    <section class="nav-secondary" aria-label="Secondary navigation level">
+      <ul class="level_1" role="list">
+        {% for item in items[2:] %}
+          <li class="{{ item.class }}">
+            <a href="{{ item.href }}"
+               title="{{ item.title|default(item.link) }}"
+               aria-label="{{ item.title|default(item.link) }}"
+               {% if item.active %}aria-current="page"{% endif %}>
+              {{ item.link }}
+            </a>
+
+            {# Render subitems if available #}
+            {% if item.subitems is not empty %}
+              {{ item.subitems|raw }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+
+  {% else %}
+    {# Fallback block if no navigation items are found #}
+    <section class="nav-empty" aria-label="No navigation available">
+      <p class="no-navigation">No navigation items found.</p>
+    </section>
+  {% endif %}
+</nav>

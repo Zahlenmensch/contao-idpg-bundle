@@ -1,0 +1,132 @@
+{#
+  Twig Template: Search Module with Schema.org and Accessibility
+  --------------------------------------------------------------
+  Renders a search form and results with semantic markup for SearchResultsPage.
+  Includes translation support, accessibility features, and modular block structure.
+#}
+
+{% extends "block_unsearchable" %}
+
+{% block content %}
+  <section itemscope itemtype="https://schema.org/SearchResultsPage" aria-label="{{ 'search.form_label'|trans }}">
+
+    {# Search form with role and accessible structure #}
+    <form {% if action %} action="{{ action }}" {% endif %} method="get" role="search" aria-labelledby="search-form-{{ uniqueId }}">
+      <fieldset>
+        <legend id="search-form-{{ uniqueId }}" class="invisible">
+          {{ 'search.form_label'|trans }}
+        </legend>
+
+        <div class="formbody">
+
+          {% block keyword_input %}
+            <div class="widget widget-text">
+              <label for="ctrl_keywords_{{ uniqueId }}" class="invisible">
+                {{ keywordLabel|default('search.keyword_label'|trans) }}
+              </label>
+              <input type="search"
+                     name="keywords"
+                     id="ctrl_keywords_{{ uniqueId }}"
+                     class="text"
+                     value="{{ keyword }}"
+                     spellcheck="false"
+                     aria-describedby="keyword-hint-{{ uniqueId }}">
+            </div>
+          {% endblock %}
+
+          {% block advanced_options %}
+            {% if advanced %}
+              <div class="widget widget-radio">
+                <fieldset class="radio_container">
+                  <legend class="invisible">{{ optionsLabel|default('search.options_label'|trans) }}</legend>
+
+                  <span>
+                    <input type="radio"
+                           name="query_type"
+                           id="matchAll_{{ uniqueId }}"
+                           class="radio"
+                           value="and"
+                           {% if queryType == 'and' %}checked{% endif %}>
+                    <label for="matchAll_{{ uniqueId }}">
+                      {{ matchAll|default('search.match_all'|trans) }}
+                    </label>
+                  </span>
+
+                  <span>
+                    <input type="radio"
+                           name="query_type"
+                           id="matchAny_{{ uniqueId }}"
+                           class="radio"
+                           value="or"
+                           {% if queryType == 'or' %}checked{% endif %}>
+                    <label for="matchAny_{{ uniqueId }}">
+                      {{ matchAny|default('search.match_any'|trans) }}
+                    </label>
+                  </span>
+                </fieldset>
+              </div>
+            {% endif %}
+          {% endblock %}
+
+          {% block submit_button %}
+            <div class="widget widget-submit">
+              <button type="submit"
+                      id="ctrl_submit_{{ uniqueId }}"
+                      class="submit"
+                      aria-label="{{ 'search.submit_aria'|trans }}">
+                {{ search|default('search.submit'|trans) }}
+              </button>
+            </div>
+          {% endblock %}
+
+        </div>
+      </fieldset>
+    </form>
+
+    {% block search_header %}
+      {% if header %}
+        <p class="header">{{ header|raw }}</p>
+        {% if keywordHint %}
+          <p class="info" id="keyword-hint-{{ uniqueId }}">{{ keywordHint|raw }}</p>
+        {% endif %}
+      {% endif %}
+    {% endblock %}
+
+    {% block search_results %}
+      {% if results %}
+        <section class="search-results"
+                 itemprop="mainEntity"
+                 itemscope
+                 itemtype="https://schema.org/ItemList"
+                 aria-label="{{ 'search.results_label'|trans }}">
+          <meta itemprop="name" content="{{ keyword }}">
+          <meta itemprop="numberOfItems" content="{{ results|length }}">
+
+          <ul class="search-results-list" role="list">
+            {% for result in searchResults %}
+              {% include 'search_default.html.twig' with {
+                position: loop.index,
+                total: loop.length,
+                hasImage: result.hasImage,
+                image: result.image,
+                link: result.link,
+                href: result.href,
+                context: result.context,
+                url: result.url,
+                category: result.category,
+                type: result.type
+              } %}
+            {% endfor %}
+          </ul>
+
+          {{ pagination|raw }}
+        </section>
+      {% else %}
+        <p class="no-results" role="alert">
+          {{ 'search.no_results'|trans }}
+        </p>
+      {% endif %}
+    {% endblock %}
+
+  </section>
+{% endblock %}

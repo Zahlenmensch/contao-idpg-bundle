@@ -1,0 +1,35 @@
+{#
+  Twig Template: Simple News Entry (Accessible)
+  ---------------------------------------------
+  Renders a minimal news entry with headline and optional schema.org metadata.
+  Includes block structure, accessibility enhancements, translation support,
+  and default author fallback.
+#}
+
+<article class="entry block{{ class }}"
+         role="article"
+         aria-labelledby="entry-headline-{{ id }}"
+         itemscope
+         itemtype="https://schema.org/Article"
+         id="entry-{{ id }}">
+
+  {% block headline %}
+    <h2 id="entry-headline-{{ id }}" itemprop="headline">
+      {{ linkHeadline|raw }}
+    </h2>
+  {% endblock %}
+
+  {% block schema_org %}
+    {% if not hasReader %}
+      {% set schemaOrg = getSchemaOrgData() %}
+      {% set schemaOrg = schemaOrg|merge({
+        author: {
+          '@type': 'Person',
+          name: authorName|default('Ines Diepenbruck')
+        }
+      }) %}
+      {{ schemaOrg|addSchemaOrg }}
+    {% endif %}
+  {% endblock %}
+
+</article>

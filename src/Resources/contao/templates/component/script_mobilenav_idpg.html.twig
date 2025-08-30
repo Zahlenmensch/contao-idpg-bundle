@@ -1,0 +1,69 @@
+<!--
+  Mobile Navigation Script
+  ------------------------
+  Handles toggling of mobile navigation and submenu.
+  Adds and updates aria-expanded attributes for accessibility.
+  Ensures safe execution even if some elements are missing.
+-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select key navigation elements
+    const backdrop = document.querySelector(".backdrop");
+    const toggleButton = document.querySelector(".nav-main-toggler");
+    const navMain = document.querySelector(".nav-main-mobile");
+    const navSubmenu = document.querySelector(".submenu");
+
+    // Helper function to toggle aria-expanded attribute
+    function toggleAriaExpanded(el) {
+      if (!el.hasAttribute("aria-expanded")) return;
+      const current = el.getAttribute("aria-expanded") === "true";
+      el.setAttribute("aria-expanded", String(!current));
+    }
+
+    // Initialize aria-expanded attributes if not already set
+    if (toggleButton && !toggleButton.hasAttribute("aria-expanded")) {
+      toggleButton.setAttribute("aria-expanded", "false");
+    }
+    if (navSubmenu && !navSubmenu.hasAttribute("aria-expanded")) {
+      navSubmenu.setAttribute("aria-expanded", "false");
+    }
+
+    // Toggle mobile navigation and backdrop
+    if (toggleButton && navMain && backdrop) {
+      toggleButton.addEventListener("click", () => {
+        toggleButton.classList.toggle("nav-main-toggler-open");
+        navMain.classList.toggle("nav-main-mobile-open");
+        backdrop.classList.toggle("backdrop-open");
+
+        // Update aria-expanded state
+        toggleAriaExpanded(toggleButton);
+      });
+
+      // Close navigation when clicking on backdrop
+      backdrop.addEventListener("click", () => {
+        toggleButton.classList.remove("nav-main-toggler-open");
+        navMain.classList.remove("nav-main-mobile-open");
+        backdrop.classList.remove("backdrop-open");
+
+        if (toggleButton.hasAttribute("aria-expanded")) {
+          toggleButton.setAttribute("aria-expanded", "false");
+        }
+
+        if (navSubmenu) {
+          navSubmenu.classList.remove("submenu-open");
+          if (navSubmenu.hasAttribute("aria-expanded")) {
+            navSubmenu.setAttribute("aria-expanded", "false");
+          }
+        }
+      });
+    }
+
+    // Toggle submenu visibility
+    if (navSubmenu) {
+      navSubmenu.addEventListener("click", () => {
+        navSubmenu.classList.toggle("submenu-open");
+        toggleAriaExpanded(navSubmenu);
+      });
+    }
+  });
+</script>

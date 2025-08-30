@@ -1,0 +1,31 @@
+{#
+  Twig Template: Matomo Tracking Script (Head-Only)
+  -------------------------------------------------
+  This template inserts the Matomo tracking script into the <head> section.
+  It disables cookies and loads the script asynchronously.
+  It only renders for frontend users (not logged-in backend users).
+#}
+
+{% if not BE_USER_LOGGED_IN %}
+  <script>
+    // Initialize Matomo tracking array
+    var _paq = window._paq = window._paq || [];
+
+    // Disable cookies for privacy compliance
+    _paq.push(['disableCookies']);
+
+    // Track page view and enable link tracking
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+
+    // Load Matomo script asynchronously
+    (function() {
+      var u = 'https://matomo.id-pferdegesundheit.de/';
+      _paq.push(['setTrackerUrl', u + 'matomo.php']);
+      _paq.push(['setSiteId', '1']); // Replace with your actual site ID
+      var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+      g.async = true; g.defer = true; g.src = u + 'matomo.js';
+      s.parentNode.insertBefore(g, s);
+    })();
+  </script>
+{% endif %}

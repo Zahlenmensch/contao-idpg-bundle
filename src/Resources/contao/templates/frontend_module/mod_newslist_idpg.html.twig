@@ -1,0 +1,42 @@
+{#
+  Twig Template: News List Module (Accessible)
+  --------------------------------------------
+  Renders a list of news articles with optional pagination.
+  Includes schema.org markup, accessibility enhancements, and translation support.
+#}
+
+{% extends "block_unsearchable" %}
+
+{% block content %}
+  {% if articles is empty %}
+    <p class="empty" role="alert">
+      {{ empty|default('news.no_entries'|trans) }}
+    </p>
+  {% else %}
+    <section class="letter-section"
+             itemscope
+             itemtype="https://schema.org/ItemList"
+             aria-label="{{ 'news.list_label'|trans }}">
+
+      <meta itemprop="numberOfItems" content="{{ articles|length }}">
+
+      <ul class="glossary-list" role="list">
+        {% for article in articles %}
+          <li class="glossary-entry"
+              itemscope
+              itemtype="https://schema.org/Article"
+              itemprop="itemListElement"
+              role="article"
+              aria-posinset="{{ loop.index }}"
+              aria-setsize="{{ loop.length }}">
+            {{ article|raw }}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if pagination is defined %}
+        {{ pagination|raw }}
+      {% endif %}
+    </section>
+  {% endif %}
+{% endblock %}

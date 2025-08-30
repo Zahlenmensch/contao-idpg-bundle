@@ -1,0 +1,54 @@
+<li class="search_default"
+    itemscope
+    itemtype="https://schema.org/ListItem"
+    itemprop="itemListElement"
+    role="article"
+    aria-posinset="{{ position }}"
+    aria-setsize="{{ total }}"
+    {% if category or type %} aria-describedby="meta-{{ position }}" {% endif %}>
+
+  {% if position is defined %}
+    <meta itemprop="position" content="{{ position }}">
+  {% endif %}
+
+  {% block image %}
+    {% if hasImage %}
+      {{ include('@Contao/image/image.html.twig', { image: image }) }}
+    {% endif %}
+  {% endblock %}
+
+  {% block headline %}
+    <h3>
+      <a href="{{ href }}"
+         itemprop="url"
+         aria-label="{{ 'search.result_link_label'|trans({ '%title%': link|striptags }) }}">
+        <span itemprop="name">{{ link|raw }}</span>
+      </a>
+    </h3>
+  {% endblock %}
+
+  {% block meta %}
+    {% if category or type %}
+      <p class="meta-info invisible" id="meta-{{ position }}">
+        {% if category %}
+          {{ 'search.category_label'|trans }}: {{ category }}
+        {% endif %}
+        {% if category and type %} – {% endif %}
+        {% if type %}
+          {{ 'search.type_label'|trans }}: {{ type }}
+        {% endif %}
+      </p>
+    {% endif %}
+  {% endblock %}
+
+  {% block context %}
+    {% if context %}
+      <p class="context">{{ context|raw }}</p>
+    {% endif %}
+  {% endblock %}
+
+  {% block url %}
+    <p class="url" aria-hidden="true">{{ url }}</p>
+  {% endblock %}
+
+</li>

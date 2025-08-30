@@ -1,0 +1,60 @@
+{#
+  Twig Template: Latest News Teaser (Accessible)
+  ----------------------------------------------
+  Renders a single news teaser with optional image, headline, teaser text,
+  and "read more" link. Includes schema.org markup and accessibility enhancements.
+#}
+
+<article class="layout_latest arc_{{ archive.id }} block{{ class }}"
+         role="article"
+         aria-labelledby="news-headline-{{ archive.id }}"
+         aria-describedby="news-teaser-{{ archive.id }}"
+         itemscope
+         itemtype="https://schema.org/NewsArticle">
+
+  {% block image %}
+    {% if addImage %}
+      {{ include('@Contao/image/image.html.twig', { image: arrData }) }}
+    {% endif %}
+  {% endblock %}
+
+  {% block headline %}
+    <h2 id="news-headline-{{ archive.id }}" itemprop="headline">
+      {{ linkHeadline }}
+    </h2>
+  {% endblock %}
+
+  {% block teaser %}
+    <div class="ce_text block"
+         id="news-teaser-{{ archive.id }}"
+         itemprop="description">
+      {{ teaser|csp_inline_styles|raw }}
+    </div>
+  {% endblock %}
+
+  {% block read_more %}
+    {% if hasText or hasTeaser %}
+      <p class="more">
+        <a href="{{ href }}"
+           aria-label="{{ 'news.read_more_aria'|trans({ '%title%': linkHeadline|striptags }) }}">
+          {{ more|default('news.read_more'|trans) }}
+        </a>
+      </p>
+    {% endif %}
+  {% endblock %}
+
+  {% block schema_org %}
+    {% if not hasReader %}
+      {% set schemaOrg = getSchemaOrgData() %}
+      {% set schemaOrg = schemaOrg|merge({
+        author: {
+          '@type': 'Person',
+          name: authorName|default('Ines Diepenbruck')
+        },
+        datePublished: datetime|date('Y-m-d')
+      }) %}
+      {{ schemaOrg|addSchemaOrg }}
+    {% endif %}
+  {% endblock %}
+
+</article>

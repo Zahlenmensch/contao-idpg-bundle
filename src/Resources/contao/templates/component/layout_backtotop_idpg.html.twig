@@ -1,0 +1,56 @@
+{#
+  Twig Template: Back-to-Top Button Script (Enhanced)
+  ---------------------------------------------------
+  This template inserts a "Back to Top" button with accessibility features.
+  It supports translation, safe attribute handling, and injects the script
+  into the layout's body slot for modular control. Script execution is skipped
+  in editor preview mode to avoid conflicts.
+#}
+
+{# Render the button markup #}
+{% block back_to_top_link %}
+  {% set link_attributes = attrs()
+    .set('href', '#top')
+    .set('class', 'back-to-top')
+    .set('role', 'button')
+    .set('aria-label', 'MSC.backToTop'|trans)
+    .set('title', 'MSC.backToTop'|trans)
+  %}
+
+  <a{{ link_attributes }}>
+    <span class="invisible">{{ 'MSC.backToTop'|trans }}</span>
+    <i class="fas fa-angle-double-up" aria-hidden="true"></i>
+  </a>
+{% endblock %}
+
+{# Inject the script into the body slot, only for frontend view #}
+{% block back_to_top_script %}
+  {% if not as_editor_view %}
+    {% add "back_to_top_script" to body %}
+      {% set script_attributes = attrs()
+        .setIfExists('nonce', csp_nonce('script-src'))
+      %}
+      <script{{ script_attributes }}>
+        document.addEventListener("DOMContentLoaded", function () {
+          const button = document.querySelector(".back-to-top");
+
+          if (!button) return;
+
+          // Hide the button initially
+          button.style.display = "none";
+
+          // Show the button when user scrolls down 100px
+          window.addEventListener("scroll", function () {
+            button.style.display = window.scrollY > 100 ? "block" : "none";
+          });
+
+          // Smooth scroll to top when button is clicked
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        });
+      </script>
+    {% endadd %}
+  {% endif %}
+{% endblock %}

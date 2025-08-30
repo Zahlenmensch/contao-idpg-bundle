@@ -1,0 +1,43 @@
+{#
+  Twig Template: Sitemap Module (Accessible + SEO)
+  ------------------------------------------------
+  Renders a hierarchical sitemap with semantic HTML, accessibility features,
+  and Schema.org markup for site structure. Supports nested subpages.
+#}
+
+<nav role="navigation"
+     aria-label="Sitemap"
+     itemscope
+     itemtype="https://schema.org/SiteNavigationElement">
+
+  {% if items is not empty %}
+    <ul class="sitemap-list" role="list">
+      {% for item in items %}
+        <li class="{{ item.class }}"
+            itemscope
+            itemtype="https://schema.org/ItemList"
+            itemprop="itemListElement"
+            role="listitem"
+            aria-label="{{ item.title|default(item.link) }}">
+
+          <a href="{{ item.href }}"
+             itemprop="url"
+             title="{{ item.title|default(item.link) }}"
+             aria-label="{{ 'sitemap.link_label'|trans({ '%title%': item.link|striptags }) }}">
+            <span itemprop="name">{{ item.link }}</span>
+          </a>
+
+          {% if item.subitems is not empty %}
+            <ul class="sitemap-sublist" role="list">
+              {{ item.subitems|raw }}
+            </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="no-sitemap" role="alert">
+      {{ 'sitemap.no_entries'|trans }}
+    </p>
+  {% endif %}
+</nav>
