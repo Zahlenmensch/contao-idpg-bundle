@@ -55,6 +55,7 @@ class ModuleSplitNavigation extends ModuleNavigation
     /**
      * Prepares the module output and passes data to the template.
      * This method is automatically called by Contao when rendering the module.
+     * It builds the navigation tree and injects additional frontend data.
      */
     protected function compile(): void
     {
@@ -68,9 +69,11 @@ class ModuleSplitNavigation extends ModuleNavigation
         $rootId = $this->getRootPageId();
 
         // Fetch the navigation items using Contao's built-in method.
+        // This method is inherited from ModuleNavigation and returns an array of navigation items.
         $items = parent::getNavigation($rootId, $startLevel, $hardLimit, $stopLevel);
 
         // Optionally filter out protected pages if the setting is disabled.
+        // This ensures that pages marked as "protected" are not shown to guests.
         if (!$showProtected) {
             $items = array_filter($items, static function ($item) {
                 return empty($item['protected']);
@@ -78,12 +81,15 @@ class ModuleSplitNavigation extends ModuleNavigation
         }
 
         // Pass the final navigation items to the template.
+        // These items will be rendered in the frontend using the assigned Twig template.
         $this->Template->items = $items;
 
         // Pass the article alias to the template (if defined in DCA).
+        // This allows injecting a specific article between navigation blocks.
         $this->Template->headerArticleAlias = $this->headerArticleAlias ?? '';
 
         // Example usage of translator (optional):
+        // You can use this to translate labels or dynamic content in the template.
         // $this->Template->headline = $this->translator->trans('my_custom_label');
     }
 }
