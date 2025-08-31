@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+  <file source-language="de_du" datatype="plaintext" original="default">
+    <body>
+      <trans-unit id="ERR.mandatory">
+        <source>Bitte fülle das Feld "%s" aus.</source>
+      </trans-unit>
+      <trans-unit id="ERR.mdtryNoLabel">
+        <source>Bitte fülle dieses Feld aus.</source>
+      </trans-unit>
+      <trans-unit id="ERR.digit">
+        <source>Bitte gib nur Zahlen ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.natural">
+        <source>Bitte gib nur natürliche Zahlen ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.prcnt">
+        <source>Bitte gib einen Prozentsatz zwischen 0 und 100 ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.alpha">
+        <source>Bitte gib nur Buchstaben ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.alnum">
+        <source>Bitte gib nur Buchstaben und Zahlen ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.phone">
+        <source>Bitte gib eine gültige Telefonnummer ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.extnd">
+        <source>Aus Sicherheitsgründen kannst du folgende Zeichen hier nicht verwenden: #&lt;&gt;()\=</source>
+      </trans-unit>
+      <trans-unit id="ERR.email">
+        <source>Bitte gib eine gültige E-Mail-Adresse ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.emails">
+        <source>Mindestens eine der E-Mail-Adressen ist ungültig.</source>
+      </trans-unit>
+      <trans-unit id="ERR.url">
+        <source>Bitte gib ein gültiges URL-Format ein und kodiere Sonderzeichen.</source>
+      </trans-unit>
+      <trans-unit id="ERR.locale">
+        <source>Bitte gib ein gültiges Gebietsschema wie z.B. "de" oder "de_DE" ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.language">
+        <source>Bitte gib einen gültigen Sprachcode wie z.B. "de" oder "de-DE" ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.alias">
+        <source>Bitte gib nur Buchstaben und Zahlen
+      <trans-unit id="ERR.pathOnly">
+        <source>Du kannst nur Dateien oder Ordner innerhalb von "%s" auswählen.</source>
+      </trans-unit>
+      <trans-unit id="ERR.extensionsOnly">
+        <source>Du kannst nur "%s"-Dateien auswählen.</source>
+      </trans-unit>
+      <trans-unit id="ERR.invalidPages">
+        <source>Deine Auswahl enthält ungültige Seiten-IDs.</source>
+      </trans-unit>
+      <trans-unit id="ERR.formCookieWarning">
+        <source>Du kannst dieses Formular nicht absenden, da Cookies in deinem Browser deaktiviert sind.</source>
+      </trans-unit>
+      <trans-unit id="ERR.captcha">
+        <source>Bitte beantworte die Sicherheitsfrage.</source>
+      </trans-unit>
+      <trans-unit id="ERR.fileNotFoundSync">
+        <source>Kein Datenbank-Eintrag zu %s gefunden. Bitte synchronisiere das Dateisystem.</source>
+      </trans-unit>
+      <trans-unit id="ERR.invalidGoogleId">
+        <source>Bitte gib eine numerische Google+-ID oder einen Vanity-Namen ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.invalidFieldName">
+        <source>Bitte gib nur folgende Zeichen ein: A-Z0-9[]_-</source>
+      </trans-unit>
+      <trans-unit id="ERR.emptyTitleOrId">
+        <source>Bitte gib sowohl einen Titel als auch eine ID ein.</source>
+      </trans-unit>
+      <trans-unit id="ERR.moduleWithoutColumn">
+        <source>Bitte weise alle Module einer Spalte zu.</source>
+      </trans-unit>
+      <trans-unit id="ERR.numberInputNotAllowed">
+        <source>Bitte gib eine valide Zahl ein (z. B. 5'000, 5.00, 5,00, 5'000.00)</source>
+      </trans-unit>
+      <trans-unit id="ERR.mcwMinCount">
+        <source>Bitte fülle mindestens %s Zeilen aus.</source>
+      </trans-unit>
+      <trans-unit id="SEC.question1">
+        <source>Bitte addiere %d und %d.</source>
+      </trans-unit>
+      <trans-unit id="SEC.question3">
+        <source>Bitte rechne %d plus %d.</source>
+      </trans-unit>
+      <trans-unit id="MSC.url.1">
+        <source>Bitte gib eine Web-Adresse (http://…), eine E-Mail-Adresse (mailto:…) oder ein Inserttag ein.</source>
+      </trans-unit>
+      <trans-unit id="MSC.separator.1">
+        <source>Bitte wähle ein Feld-Trennzeichen aus.</source>
+      </trans-unit>
+      <trans-unit id="MSC.source.1">
+        <source>Bitte lade die zu importierenden CSV-Dateien hoch.</source>
+      </trans-unit>
+      <trans-unit id="MSC.all_fields.1">
+        <source>Bitte wähle die Felder aus, die du bearbeiten möchtest.</source>
+      </trans-unit>
+      <trans-unit id="MSC.password.1">
+        <source>Bitte gib ein Passwort ein.</source>
+      </trans-unit>
+      <trans-unit id="MSC.confirm.1">
+        <source>Bitte bestätige das Passwort.</source>
+      </trans-unit>
+      <trans-unit id="MSC.firstLogin">
+        <source>Dies scheint deine erste Anmeldung zu sein. Willkommen bei Contao.</source>
+      </trans-unit>
+      <trans-unit id="MSC.shortcuts.1">
+        <source>Wie du deinen Arbeitsablauf durch die Verwendung von <a href="https://docs.contao.org/books/manual/current/de/02-administrationsbereich/backend-tastaturkuerzel.html" title="Übersicht der Tastaturkürzel" target="_blank" rel="noreferrer noopener">Tastaturkürzeln</a> beschleunigen kannst.</source>
+      </trans-unit>
+      <trans-unit id="MSC.delAllConfirm">
+        <source>Möchtest du die ausgewählten Einträge wirklich löschen?</source>
+      </trans-unit>
+      <trans-unit id="MSC.delAllConfirmFile">
+        <source>Möchtest du die ausgew
+      <trans-unit id="MSC.jsDisabled">
+        <source>JavaScript scheint in deinem Browser deaktiviert zu sein. Das Contao-Backend funktioniert ohne JavaScript nur eingeschränkt.</source>
+      </trans-unit>
+      <trans-unit id="MSC.resendActivation">
+        <source>Die Aktivierungsmail wurde erneut an deine E-Mail-Adresse verschickt.</source>
+      </trans-unit>
+      <trans-unit id="MSC.accountActivated">
+        <source>Dein Konto wurde aktiviert.</source>
+      </trans-unit>
+      <trans-unit id="MSC.emailSubject">
+        <source>Deine Registrierung auf %s</source>
+      </trans-unit>
+      <trans-unit id="MSC.adminText">
+        <source>Ein neues Mitglied (ID %s) hat sich auf deiner Webseite registriert.%sFalls du die automatische E-Mail-Aktivierung nicht nutzt, musst du das Konto manuell im Backend aktivieren.</source>
+      </trans-unit>
+      <trans-unit id="MSC.newPasswordSet">
+        <source>Dein Passwort wurde aktualisiert.</source>
+      </trans-unit>
+      <trans-unit id="MSC.passwordSubject">
+        <source>Deine Passwortanfrage für %s</source>
+      </trans-unit>
+      <trans-unit id="MSC.selectNewPosition">
+        <source>Lege als Nächstes die (neue) Position des Elements fest</source>
+      </trans-unit>
+      <trans-unit id="MSC.loggedInAs">
+        <source>Willkommen in deinem persönlichen Bereich.</source>
+      </trans-unit>
+      <trans-unit id="MSC.emptyField">
+        <source>Bitte gib deine E-Mail-Adresse und dein Passwort ein.</source>
+      </trans-unit>
+      <trans-unit id="MSC.sNoResult">
+        <source>Deine Suche nach <strong>%s</strong> ergab keine Treffer.</source>
+      </trans-unit>
+      <trans-unit id="MSC.sKeywordHint">
+        <source>Beachte, dass Suchbegriffe, die kürzer als %s Zeichen sind und keinen Modifikator enthalten, ignoriert wurden.</source>
+      </trans-unit>
+      <trans-unit id="MSC.invalidTokenUrl">
+        <source>Der aufgerufene Link konnte nicht verifiziert werden. Wenn du den Link selbst aufgerufen oder von einer vertrauenswürdigen Person erhalten hast, kannst du den Vorgang fortsetzen.</source>
+      </trans-unit>
+      <trans-unit id="MSC.versionConflict1">
+        <source>Ein anderer Benutzer hat die Version %s erstellt, während du die Version %s des Datensatzes bearbeitet hast.</source>
+      </trans-unit>
+      <trans-unit id="MSC.versionConflict2">
+        <source>Deine Änderungen wurden nun als Version %s gespeichert und haben die Änderungen der Version %s potentiell überschrieben, daher solltest du die nachstehenden Versionen vergleichen:</source>
+      </trans-unit>
+      <trans-unit id="MSC.metaNoLanguages">
+        <source>Du musst einen Startpunkt in der Seitenstruktur anlegen, um Metadaten einzugeben.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorVerificationHelp">
+        <source>Bitte gib den von deiner 2FA/TOTP-App generierten Bestätigungscode ein.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorExplain">
+        <source>Hier kannst du die Zwei-Faktor-Authentifizierung aktivieren, um deinen Account zusätzlich abzusichern. Du musst dann zusätzlich zu deinem Benutzernamen und Passwort einen Bestätigungscode eingeben, den du mit einer Zwei-Faktor-App wie z.B. 1Password, Authy, Google Authenticator, Microsoft Authenticator, LastPass Authenticator oder jeder anderen TOTP-App generieren kannst.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorScan">
+        <source>Bitte scanne den QR-Code mit deiner 2FA/TOTP-App.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorEnforced">
+        <source>Bitte aktiviere die Zwei-Faktor-Authentifizierung bevor du fortfährst.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorTextCode">
+        <source>Wenn du den QR-Code nicht scannen kannst, gib stattdessen diesen Schlüssel ein:</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorBackupCodesExplain">
+        <source>Mit einem Backup-Code kannst du auf dein Konto zugreifen, wenn du dein Authentifizierungsgerät verlierst und keine Bestätigungscodes mehr generieren kannst. Behandel deine Backup-Codes genauso sorgfältig wie dein Passwort. Speichere sie am besten mit einem Passwort-Manager wie Lastpass, 1Password oder Keeper.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorBackupCodesInfo">
+        <source>Bewahre die Codes sicher auf. Wenn du dein Authentifizierungsgerät verlierst und keine Backup-Codes hast, kannst du nicht mehr auf dein Konto zugreifen.</source>
+      </trans-unit>
+      <trans-unit id="MSC.twoFactorBackupCodesRegenerateInfo">
+        <source>Wenn du die Backup-Codes neu generierst, werden deine alten Codes nicht mehr funktionieren.</source>
+      </trans-unit>
+      <trans-unit id="MSC.serpPreview.1">
+        <source>Hier kannst du sehen wie Google die Metadaten in den Suchergebnissen anzeigt. Andere Suchmaschinen zeigen gegebenenfalls längere Texte an oder beschneiden diese an einer anderen Position.</source>
+      </trans-unit>
+      <trans-unit id="DP.use_mouse_wheel">
+        <source>Ändere die Werte mit Hilfe des Mausrads</source>
+      </trans-unit>
+      <trans-unit id="ERR.subscribed">
+        <source>Du hast dich für die ausgewählten Verteiler bereits angemeldet.</source>
+      </trans-unit>
+      <trans-unit id="ERR.unsubscribed">
+        <source>Du hast dich für die ausgewählten Verteiler nicht angemeldet.</source>
+      </trans-unit>
+      <trans-unit id="ERR.noChannels">
+        <source>Bitte wähle mindestens einen Verteiler aus.</source>
+      </trans-unit>
+      <trans-unit id="MSC.nl_confirm">
+        <source>Vielen Dank für deine Anmeldung. Du erhälst einen Bestätigungslink per E-Mail.</source>
+      </trans-unit>
+      <trans-unit id="MSC.nl_activate">
+        <source>Deine Anmeldung war erfolgreich.</source>
+      </trans-unit>
+      <trans-unit id="MSC.nl_removed">
+        <source>Deine Abmeldung war erfolgreich.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

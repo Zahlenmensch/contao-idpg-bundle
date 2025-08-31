@@ -8,3 +8,9 @@ services:
   # Automatically register all classes in your bundle as services
   Zahlenmensch\ContaoIdpgBundle\Module\:
     resource: '../../Module'
+
+  # Explicitly register the navigation module with Contao
+  Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation:
+    tags:
+      - { name: contao.frontend_module, category: navigation, type: split_navigation }
+    public: true

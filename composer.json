@@ -13,12 +13,12 @@
     "php": "^8.3",
     "contao/core-bundle": "5.*"
   },
-  "extra": {
-    "contao-manager-plugin": "Zahlenmensch\\ContaoIdpgBundle\\ContaoManager\\Plugin"
-  },
   "autoload": {
     "psr-4": {
-        "Zahlenmensch\\ContaoIdpgBundle\\": "src/"
+      "Zahlenmensch\\ContaoIdpgBundle\\": "src/"
     }
+  },
+  "extra": {
+    "contao-manager-plugin": "Zahlenmensch\\ContaoIdpgBundle\\ContaoManager\\Plugin"
   }
 }

@@ -1,9 +1,13 @@
 {#
   Twig Template: Split Navigation for Contao
   ------------------------------------------
-  Renders the first two navigation items, inserts a logo/article,
+  Renders the first two navigation items, inserts a logo/article via InsertTag,
   and then renders the remaining items. Supports nested subitems,
   accessibility (ARIA), and semantic SEO via Schema.org.
+
+  Expected variables:
+    - items: array of navigation items
+    - headerArticleAlias: string (article alias to be inserted)
 #}
 
 <nav role="navigation"
@@ -25,7 +29,6 @@
               {{ item.link }}
             </a>
 
-            {# Render subitems if available #}
             {% if item.subitems is not empty %}
               {{ item.subitems|raw }}
             {% endif %}
@@ -37,7 +40,10 @@
     {# Optional logo or article insertion between navigation blocks #}
     <section class="nav-logo" aria-label="Logo or custom content">
       {% if headerArticleAlias is not empty %}
+        {# InsertTag: dynamically injects an article by alias #}
         {{ ('{{insert_article::' ~ headerArticleAlias ~ '}}') | insert_tag }}
+      {% else %}
+        {# No article alias provided #}
       {% endif %}
     </section>
 
@@ -53,7 +59,6 @@
               {{ item.link }}
             </a>
 
-            {# Render subitems if available #}
             {% if item.subitems is not empty %}
               {{ item.subitems|raw }}
             {% endif %}

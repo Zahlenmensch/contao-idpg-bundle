@@ -1,4 +1,11 @@
 <?php
 
-// Frontend modules
-$GLOBALS['FE_MOD']['idpg']['SplitNavigation'] = 'Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation';$GLOBALS['FE_MOD']['idpg']['SplitNavigation'] = 'Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation';
+/**
+ * Register custom frontend modules for Contao.
+ *
+ * This file defines the module type "split_navigation" and links it to
+ * the corresponding PHP class. The module will appear in the backend
+ * under the category "idpg" and can be selected when creating a new module.
+ */
+
+$GLOBALS['FE_MOD']['idpg']['split_navigation'] = 'Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation';

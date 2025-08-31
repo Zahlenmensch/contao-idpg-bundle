@@ -1,17 +1,14 @@
 <?php
 
 /**
- * DCA configuration for the custom frontend module "SplitNavigation".
+ * DCA configuration for the custom frontend module "split_navigation".
  * This module extends Contao's navigation module and allows injecting
  * an article between two navigation blocks.
- *
- * The palette and field definitions ensure correct backend rendering
- * and data handling.
  */
 
-// Register a new palette for the module type "SplitNavigation"
-$GLOBALS['TL_DCA']['tl_module']['palettes']['SplitNavigation'] =
-    '{title_legend},name,headline,type;{nav_legend},levelOffset,showLevel,hardLimit,showProtected;{article_legend},headerArticleAlias;{template_legend},customTpl;{expert_legend:hide},guests,cssID,space';
+// Register a new palette for the module type "split_navigation"
+$GLOBALS['TL_DCA']['tl_module']['palettes']['split_navigation'] =
+    '{title_legend},name,headline,type;{navigation_legend},levelOffset,showLevel,hardLimit,showProtected,defineRoot,rootPage;{article_legend},headerArticleAlias;{template_legend:hide},navigationTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 // Define the custom field "headerArticleAlias" used to inject an article between navigation blocks
 $GLOBALS['TL_DCA']['tl_module']['fields']['headerArticleAlias'] = [
