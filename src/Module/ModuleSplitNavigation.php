@@ -3,7 +3,6 @@
 namespace Zahlenmensch\ContaoIdpgBundle\Module;
 
 use Contao\ModuleNavigation;
-use Contao\System;
 
 /**
  * Custom navigation module that splits the navigation into two blocks
@@ -15,20 +14,27 @@ class ModuleSplitNavigation extends ModuleNavigation
 {
     /**
      * The name of the custom template used to render the navigation.
+     * This template must exist under: src/Resources/contao/templates/frontend_module/
      *
      * @var string
      */
     protected $strTemplate = 'mod_splitnavigation_idpg';
 
     /**
-     * Generates the navigation and injects the article alias into the template.
+     * Compiles the module output.
+     * This method is called automatically by Contao and is responsible
+     * for preparing all variables passed to the template.
      */
     protected function compile(): void
     {
-        // Generate the navigation items using the parent logic
-        parent::compile();
+        // ✅ Generate the navigation items using Contao's core logic
+        $items = $this->renderNavigation();
 
-        // Pass the configured article alias to the template
+        // ✅ Pass the navigation items to the template
+        $this->Template->items = $items;
+
+        // ✅ Pass the configured article alias to the template
+        // This allows your Twig template to insert the article between navigation blocks
         $this->Template->headerArticleAlias = $this->headerArticleAlias;
     }
 }

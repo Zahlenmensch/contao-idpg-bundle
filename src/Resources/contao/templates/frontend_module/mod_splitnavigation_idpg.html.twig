@@ -8,6 +8,18 @@
   Expected variables:
     - items: array of navigation items
     - headerArticleAlias: string (article alias to be inserted)
+
+  Each item may contain:
+    - item.href: URL of the navigation link
+    - item.link: Display text
+    - item.title: Optional tooltip text
+    - item.class: CSS classes for the <li> element
+    - item.active: Boolean indicating if the item is the current page
+    - item.subitems: Raw HTML for nested navigation
+    - item.target: Boolean indicating if the link should open in a new tab
+    - item.noFollow: Boolean for SEO nofollow
+    - item.accesskey: Optional keyboard shortcut
+    - item.tabindex: Optional tabindex value
 #}
 
 <nav role="navigation"
@@ -21,14 +33,19 @@
     <section class="nav-primary" aria-label="Primary navigation level">
       <ul class="level_1" role="list">
         {% for item in items[:2] %}
-          <li class="{{ item.class }}">
+          <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
             <a href="{{ item.href }}"
                title="{{ item.title|default(item.link) }}"
                aria-label="{{ item.title|default(item.link) }}"
-               {% if item.active %}aria-current="page"{% endif %}>
+               {% if item.active %}aria-current="page"{% endif %}
+               {% if item.target %}target="_blank" rel="noopener noreferrer"{% endif %}
+               {% if item.noFollow %}rel="nofollow"{% endif %}
+               {% if item.accesskey is defined and item.accesskey is not empty %}accesskey="{{ item.accesskey }}"{% endif %}
+               {% if item.tabindex is defined %}tabindex="{{ item.tabindex }}"{% endif %}>
               {{ item.link }}
             </a>
 
+            {# Render subitems if available (already pre-rendered HTML) #}
             {% if item.subitems is not empty %}
               {{ item.subitems|raw }}
             {% endif %}
@@ -51,14 +68,19 @@
     <section class="nav-secondary" aria-label="Secondary navigation level">
       <ul class="level_1" role="list">
         {% for item in items[2:] %}
-          <li class="{{ item.class }}">
+          <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
             <a href="{{ item.href }}"
                title="{{ item.title|default(item.link) }}"
                aria-label="{{ item.title|default(item.link) }}"
-               {% if item.active %}aria-current="page"{% endif %}>
+               {% if item.active %}aria-current="page"{% endif %}
+               {% if item.target %}target="_blank" rel="noopener noreferrer"{% endif %}
+               {% if item.noFollow %}rel="nofollow"{% endif %}
+               {% if item.accesskey is defined and item.accesskey is not empty %}accesskey="{{ item.accesskey }}"{% endif %}
+               {% if item.tabindex is defined %}tabindex="{{ item.tabindex }}"{% endif %}>
               {{ item.link }}
             </a>
 
+            {# Render subitems if available (already pre-rendered HTML) #}
             {% if item.subitems is not empty %}
               {{ item.subitems|raw }}
             {% endif %}
