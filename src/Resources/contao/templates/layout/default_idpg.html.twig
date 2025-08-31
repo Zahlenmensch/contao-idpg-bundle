@@ -17,3 +17,7 @@
   {# Include Matomo tracking script (cookieless, GDPR-compliant) #}
   {{ 'track_matomo_idpg' | include }}
 {% endblock %}
+
+{% block layout %}
+  {{ parent() }}
+{% endblock %}
