@@ -3,7 +3,6 @@
 namespace Zahlenmensch\ContaoIdpgBundle\Module;
 
 use Contao\ModuleNavigation;
-use Contao\Navigation; // Import Contao's navigation helper class
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -15,8 +14,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * hard limit, and visibility of protected pages.
  *
  * Note: This module is designed for standalone use and is not intended
- * to be used inside Contao module groups. It does not rely on getNavigation()
- * to avoid unintended rendering via module_group.html.twig.
+ * to be used inside Contao module groups. It uses the inherited method
+ * generateNavigation() from ModuleNavigation to build the navigation tree.
  */
 class ModuleSplitNavigation extends ModuleNavigation
 {
@@ -73,9 +72,9 @@ class ModuleSplitNavigation extends ModuleNavigation
         // Get the root page ID for the current page context.
         $rootId = $this->getRootPageId();
 
-        // Fetch the navigation items using Contao's Navigation helper class.
-        // This replaces the previous call to parent::getNavigation(), which does not exist in ModuleNavigation.
-        $items = Navigation::getLevel($rootId, $startLevel, $stopLevel, $hardLimit);
+        // Generate the navigation using the inherited method from ModuleNavigation.
+        // This is the same method used in Contao's default navigation module.
+        $items = $this->generateNavigation($rootId, $startLevel, $stopLevel, $hardLimit);
 
         // Optionally filter out protected pages if the setting is disabled.
         // This ensures that pages marked as "protected" are not shown to guests.
