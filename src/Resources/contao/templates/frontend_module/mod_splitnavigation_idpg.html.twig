@@ -1,25 +1,10 @@
 {#
   Twig Template: Split Navigation for Contao
   ------------------------------------------
-  Renders the first two navigation items, inserts a logo/article via InsertTag,
-  and then renders the remaining items. Supports nested subitems,
-  accessibility (ARIA), and semantic SEO via Schema.org.
-
-  Expected variables:
-    - items: array of navigation items
-    - headerArticleAlias: string (article alias to be inserted)
-
-  Each item may contain:
-    - item.href: URL of the navigation link
-    - item.link: Display text
-    - item.title: Optional tooltip text
-    - item.class: CSS classes for the <li> element
-    - item.active: Boolean indicating if the item is the current page
-    - item.subitems: Raw HTML for nested navigation
-    - item.target: Boolean indicating if the link should open in a new tab
-    - item.noFollow: Boolean for SEO nofollow
-    - item.accesskey: Optional keyboard shortcut
-    - item.tabindex: Optional tabindex value
+  Verbesserte Version mit:
+  - robuster Slice-Verwendung
+  - automatischer Erkennung aktiver Pfade
+  - Fallback für Artikel-Alias
 #}
 
 <nav role="navigation"
@@ -27,14 +12,19 @@
      itemscope
      itemtype="https://schema.org/SiteNavigationElement">
 
-  {% if items is not empty %}
-<pre>{{ dump(items) }}</pre>
+  {% set itemsArray = items|convert_to_array %}
+
+  {% if itemsArray|length > 0 %}
 
     {# Primary navigation block (first two items) #}
     <section class="nav-primary" aria-label="Primary navigation level">
       <ul class="level_1" role="list">
-        {% for item in items %}
-          <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
+        {% for item in itemsArray|slice(0, 2) %}
+          {% set liClass = item.class %}
+          {% if item.trail %}{% set liClass = liClass ~ ' trail' %}{% endif %}
+          {% if item.active %}{% set liClass = liClass ~ ' active' %}{% endif %}
+
+          <li{% if liClass is not empty %} class="{{ liClass|trim }}"{% endif %}>
             <a itemprop="url"
                href="{{ item.href }}"
                title="{{ item.title|default(item.link) }}"
@@ -47,7 +37,6 @@
               {{ item.link }}
             </a>
 
-            {# Render subitems if available (already pre-rendered HTML) #}
             {% if item.subitems is not empty %}
               {{ item.subitems|raw }}
             {% endif %}
@@ -56,8 +45,8 @@
       </ul>
     </section>
 
-    {# Logo as article insertion between navigation blocks #}
-    <section class="nav-logo" aria-label="Logo">
+    {# Logo or article insertion between navigation blocks #}
+    <section class="nav-logo" aria-label="Logo or custom content">
       {% set alias = headerArticleAlias is not empty ? headerArticleAlias : 'header-logo' %}
       {{ ('{{insert_article::' ~ alias ~ '}}') | insert_tag }}
     </section>
@@ -65,8 +54,12 @@
     {# Secondary navigation block (remaining items) #}
     <section class="nav-secondary" aria-label="Secondary navigation level">
       <ul class="level_1" role="list">
-        {% for item in items|slice(2) %}
-          <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
+        {% for item in itemsArray|slice(2) %}
+          {% set liClass = item.class %}
+          {% if item.trail %}{% set liClass = liClass ~ ' trail' %}{% endif %}
+          {% if item.active %}{% set liClass = liClass ~ ' active' %}{% endif %}
+
+          <li{% if liClass is not empty %} class="{{ liClass|trim }}"{% endif %}>
             <a itemprop="url"
                href="{{ item.href }}"
                title="{{ item.title|default(item.link) }}"
@@ -79,7 +72,6 @@
               {{ item.link }}
             </a>
 
-            {# Render subitems if available (already pre-rendered HTML) #}
             {% if item.subitems is not empty %}
               {{ item.subitems|raw }}
             {% endif %}
@@ -91,7 +83,7 @@
   {% else %}
     {# Fallback block if no navigation items are found #}
     <section class="nav-empty" aria-label="No navigation available">
-      <p class="no-navigation">No navigation items found.</p>
+      <p class="no-navigation">Keine Navigationselemente gefunden.</p>
     </section>
   {% endif %}
 </nav>
