@@ -1,16 +1,19 @@
 services:
   # Default settings for all services in this file
   _defaults:
-    autowire: true       # Automatically inject dependencies
+    autowire: true       # Automatically inject dependencies into constructors
     autoconfigure: true  # Automatically tag services (e.g. for Twig, events)
-    public: false        # Services are private by default
+    public: false        # Services are private by default unless explicitly made public
 
-  # Automatically register all classes in your bundle as services
+  # Automatically register all classes in the Module namespace
   Zahlenmensch\ContaoIdpgBundle\Module\:
     resource: '../../Module'
 
-  # Explicitly register the navigation module with Contao
+  # Explicit registration of the frontend module with manual constructor arguments
   Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation:
+    arguments:
+      $objModule: ~       # Contao will inject the correct ModuleModel instance at runtime
+      $strColumn: 'main'  # Default column used for rendering (can be overridden if needed)
     tags:
       - { name: contao.frontend_module, category: navigation, type: split_navigation }
-    public: true
+    public: true          # Must be public so Contao can instantiate it as a frontend module
