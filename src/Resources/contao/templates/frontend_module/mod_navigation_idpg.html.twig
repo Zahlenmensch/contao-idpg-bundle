@@ -29,10 +29,12 @@
 
   {% if items is not empty %}
 
+<pre>{{ dump(items) }}</pre>
+
     {# Primary navigation block (first two items) #}
     <section class="nav-primary" aria-label="Primary navigation level">
       <ul class="level_1" role="list">
-        {% for item in items|slice(0, 2) %}
+        {% for item in items %}
           <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
             <a itemprop="url"
                href="{{ item.href }}"
@@ -55,14 +57,10 @@
       </ul>
     </section>
 
-    {# Optional logo or article insertion between navigation blocks #}
-    <section class="nav-logo" aria-label="Logo or custom content">
-      {% if headerArticleAlias is not empty %}
-        {# InsertTag: dynamically injects an article by alias #}
-        {{ ('{{insert_article::' ~ headerArticleAlias ~ '}}') | insert_tag }}
-      {% else %}
-        {# No article alias provided #}
-      {% endif %}
+    {# Logo as article insertion between navigation blocks #}
+    <section class="nav-logo" aria-label="Logo">
+      {% set alias = headerArticleAlias is not empty ? headerArticleAlias : 'header-logo' %}
+      {{ ('{{insert_article::' ~ alias ~ '}}') | insert_tag }}
     </section>
 
     {# Secondary navigation block (remaining items) #}
