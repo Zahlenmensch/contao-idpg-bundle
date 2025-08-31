@@ -8,4 +8,4 @@
  * under the category "idpg" and can be selected when creating a new module.
  */
 
-$GLOBALS['FE_MOD']['idpg']['split_navigation'] = 'Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation';
+$GLOBALS['FE_MOD']['navigation']['split_navigation'] = 'Zahlenmensch\ContaoIdpgBundle\Module\ModuleSplitNavigation';
