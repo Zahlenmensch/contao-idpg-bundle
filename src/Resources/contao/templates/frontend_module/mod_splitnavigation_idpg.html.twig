@@ -34,7 +34,8 @@
       <ul class="level_1" role="list">
         {% for item in items[:2] %}
           <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
-            <a href="{{ item.href }}"
+            <a itemprop="url"
+               href="{{ item.href }}"
                title="{{ item.title|default(item.link) }}"
                aria-label="{{ item.title|default(item.link) }}"
                {% if item.active %}aria-current="page"{% endif %}
@@ -69,7 +70,8 @@
       <ul class="level_1" role="list">
         {% for item in items[2:] %}
           <li{% if item.class is not empty %} class="{{ item.class }}"{% endif %}>
-            <a href="{{ item.href }}"
+            <a itemprop="url"
+               href="{{ item.href }}"
                title="{{ item.title|default(item.link) }}"
                aria-label="{{ item.title|default(item.link) }}"
                {% if item.active %}aria-current="page"{% endif %}
