@@ -1,0 +1,31 @@
+{#
+  Custom Layout Template: default_idpg.html.twig
+  ----------------------------------------------
+  Extends Contao's default layout and injects:
+  - favicon definitions
+  - Matomo tracking
+  - custom CSS from /files/theme/css
+#}
+
+{% extends '@Contao/layout/default.html.twig' %}
+
+{% block head %}
+
+  {{ parent() }}
+
+  # Include custom CSS from theme folder #}
+  <link rel="stylesheet" href="{{ asset('files/theme/css/idpg.css') }}">
+
+{% endblock %}
+
+{% block body %}
+
+  {{ parent() }}
+
+  {# Include favicon definitions for all platforms #}
+  {% include '@Contao_ZahlenmenschContaoIdpgBundle/component/meta_faviconset_idpg.html.twig' %}
+
+  {# Include Matomo tracking script (cookieless, GDPR-compliant) #}
+  {% include '@Contao_ZahlenmenschContaoIdpgBundle/use/script_loader.html.twig' %}
+
+{% endblock %}

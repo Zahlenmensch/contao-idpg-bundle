@@ -2,7 +2,7 @@
 
 namespace Zahlenmensch\ContaoIdpgBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 /**
  * Main bundle class for the ContaoIdpgBundle.
@@ -11,6 +11,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * and optional article injection between navigation blocks.
  * It is registered via the Contao Manager plugin and loaded after the core bundle.
  */
-class ContaoIdpgBundle extends Bundle
+class ContaoIdpgBundle extends AbstractBundle
 {
 }
